@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SYALALA GAME - Kontak & Booking</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-container { display: grid; grid-template-columns: 1fr 1.3fr; gap: 30px; align-items: start; }
+    .contact-info { background: #13051e; border: 1px solid #7130a0; border-radius: 18px; padding: 28px; }
+    .contact-item { margin-bottom: 20px; }
+    .contact-item h4 { color: #e55cff; margin: 0 0 5px; }
+    .contact-item p { margin: 0; color: #cbb8d8; }
+
+    .form-booking { background: #160020; border: 2px solid #b44cff; border-radius: 18px; padding: 28px; }
+    .form-group { margin-bottom: 16px; text-align: left; }
+    .form-group label { display: block; margin-bottom: 6px; font-weight: bold; color: white; }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 12px; border: 1px solid #b44cff; border-radius: 10px; background: #250035; color: white;
+    }
+    .form-submit {
+      width: 100%; padding: 15px; border: none; border-radius: 12px; background: linear-gradient(90deg, #b44cff, #e000ff);
+      color: white; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s;
+    }
+    .form-submit:hover { transform: scale(1.02); box-shadow: 0 0 20px #b44cff; }
+    @media (max-width: 750px) { .contact-container { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="logo">SYALALA GAME</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="keunggulan.html">Keunggulan</a></li>
+      <li><a href="product.html">Produk</a></li>
+      <li><a href="contact.html" class="active">Kontak & Booking</a></li>
+    </ul>
+  </nav>
+
+  <section>
+    <h2 class="title">HUBUNGI KAMI & BOOKING</h2>
+    <p class="sub">Informasi kontak person dan pemesanan tempat bermain via WhatsApp.</p>
+
+    <div class="contact-container">
+      
+      <!-- UBAH DATA CONTACT PERSON DI SINI -->
+      <div class="contact-info">
+        <h3 style="color: white; font-size: 24px; margin-top: 0;">Contact Person</h3>
+        
+        <div class="contact-item">
+          <h4>📱 WhatsApp Admin</h4>
+          <p><b>08xx-xxxx-xxxx</b> (Syalala Admin)</p>
+        </div>
+
+        <div class="contact-item">
+          <h4>📍 Alamat Rental</h4>
+          <p>Jl. Contoh Utama No. 123, Area Syalala Game</p>
+        </div>
+
+        <div class="contact-item">
+          <h4>⏰ Jam Operasional</h4>
+          <p>Buka Setiap Hari: 10.00 WIB - 24.00 WIB</p>
+        </div>
+
+        <div class="contact-item">
+          <h4>📸 Media Sosial</h4>
+          <p>Instagram: @syalalagame</p>
+        </div>
+      </div>
+
+      <!-- FORM BOOKING WHATSAPP -->
+      <div class="form-booking">
+        <h3 style="color: white; font-size: 24px; margin-top: 0; text-align: center;">🎮 Form Booking Online</h3>
+        
+        <form onsubmit="kirimWhatsApp(event)">
+          <div class="form-group">
+            <label>Nama Pengunjung</label>
+            <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
+          </div>
+
+          <div class="form-group">
+            <label>Nomor WhatsApp</label>
+            <input type="tel" id="nomor" placeholder="08xxxxxxxxxx" required>
+          </div>
+
+          <div class="form-group">
+            <label>Pilih Konsol</label>
+            <select id="konsol" required>
+              <option value="">-- Pilih Konsol --</option>
+              <option value="PS3">PS3 (Rp 10.000/jam)</option>
+              <option value="PS4">PS4 (Rp 20.000/jam)</option>
+              <option value="PS5">PS5 (Rp 40.000/jam)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Tanggal Main</label>
+            <input type="date" id="tanggal" required>
+          </div>
+
+          <div class="form-group">
+            <label>Jam Mulai</label>
+            <input type="time" id="jam" required>
+          </div>
+
+          <div class="form-group">
+            <label>Durasi Main</label>
+            <select id="durasi" required>
+              <option value="">-- Pilih Durasi --</option>
+              <option value="1 Jam">1 Jam</option>
+              <option value="2 Jam">2 Jam</option>
+              <option value="3 Jam">3 Jam</option>
+              <option value="4 Jam">4 Jam</option>
+              <option value="5 Jam">5 Jam</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Catatan Tambahan</label>
+            <textarea id="catatan" rows="3" placeholder="Contoh: Minta stik 4 player..."></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">📲 PESAN VIA WHATSAPP</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p><b>SYALALA GAME</b> — Play • Relax • Enjoy</p>
+  </footer>
+
+  <script>
+    function kirimWhatsApp(event) {
+      event.preventDefault();
+
+      const nama = document.getElementById("nama").value;
+      const nomor = document.getElementById("nomor").value;
+      const konsol = document.getElementById("konsol").value;
+      const tanggal = document.getElementById("tanggal").value;
+      const jam = document.getElementById("jam").value;
+      const durasi = document.getElementById("durasi").value;
+      const catatan = document.getElementById("catatan").value;
+
+      const pesan = 
+        "🎮 *BOOKING SYALALA GAME*%0A%0A" +
+        "👤 Nama: " + nama + "%0A" +
+        "📞 WhatsApp: " + nomor + "%0A" +
+        "🎮 Konsol: " + konsol + "%0A" +
+        "📅 Tanggal: " + tanggal + "%0A" +
+        "⏰ Jam Mulai: " + jam + "%0A" +
+        "⏳ Durasi: " + durasi + "%0A" +
+        "📝 Catatan: " + (catatan || "-") +
+        "%0A%0AMohon konfirmasi pemesanan saya. Terima kasih!";
+
+      window.open("https://wa.me/?text=" + pesan, "_blank");
+    }
+  </script>
+
+</body>
+</html>
